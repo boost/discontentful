@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ContentfulTransformationToolkit::Transformation do
+RSpec.describe Discontentful::Transformation do
 
   let(:environment) { double(Contentful::Management::Environment, entries: entries) }
 
@@ -27,7 +27,7 @@ RSpec.describe ContentfulTransformationToolkit::Transformation do
     let(:test_each_block) { Proc.new {} }
     let(:simple) do
       outer = self
-      Class.new(ContentfulTransformationToolkit::Transformation) do
+      Class.new(Discontentful::Transformation) do
         each_entry_of_type('page', &outer.test_each_block)
       end
     end

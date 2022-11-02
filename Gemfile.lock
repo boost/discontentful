@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    contentful-transformation-toolkit (0.1.0)
+    discontentful (0.1.0)
       activesupport
       contentful-management (>= 3.6.0)
       diffy
@@ -100,7 +100,7 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
-  contentful-transformation-toolkit!
+  discontentful!
   pry
   rake (~> 13.0)
   rbs

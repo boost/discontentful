@@ -1,4 +1,4 @@
-module ContentfulTransformationToolkit
+module Discontentful
   class Transformation
     class_attribute :type_transforms, default: {}
 

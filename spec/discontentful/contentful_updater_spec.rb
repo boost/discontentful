@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ContentfulTransformationToolkit::ContentfulUpdater do
+RSpec.describe Discontentful::ContentfulUpdater do
   describe '#update_entry' do
     let(:entry) do
       double(
@@ -16,7 +16,7 @@ RSpec.describe ContentfulTransformationToolkit::ContentfulUpdater do
       )
     end
     let(:environment) { double(Contentful::Management::Environment) }
-    let(:stats) { ContentfulTransformationToolkit::Stats.new }
+    let(:stats) { Discontentful::Stats.new }
 
     it 'doesn\'t update the fields when dry run is specified' do
       updater = described_class.new(stats, environment, true, true)

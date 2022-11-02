@@ -1,4 +1,4 @@
-module ContentfulTransformationToolkit
+module Discontentful
   # Stats is responsible for collecting progress information and stats for
   # displaying to the user.
   #

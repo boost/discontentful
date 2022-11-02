@@ -1,4 +1,4 @@
-module ContentfulTransformationToolkit
+module Discontentful
   class RichText
     def initialize(rich_text)
       @rich_text = rich_text.deep_dup

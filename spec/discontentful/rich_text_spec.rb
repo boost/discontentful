@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ContentfulTransformationToolkit::RichText do
+RSpec.describe Discontentful::RichText do
   let(:example_rich_text) do
     {
       "data"=>{},

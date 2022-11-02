@@ -20,7 +20,7 @@ TODO: Write usage instructions here
 
 ```ruby 
 module ContentfulTransformations
-  class FileHyperlinksToEmbeddedAssetsPages < ContentfulTransformationToolkit::Transformation do
+  class FileHyperlinksToEmbeddedAssetsPages < Discontentful::Transformation do
     source_content_model 'page'
 
     def each(page) 

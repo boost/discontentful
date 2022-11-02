@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "contentful_transformation_toolkit"
+require "discontentful"
 require "pry"
 
 RSpec.configure do |config|

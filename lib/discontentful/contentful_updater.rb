@@ -1,4 +1,4 @@
-module ContentfulTransformationToolkit
+module Discontentful
   class ContentfulUpdater
     def initialize(stats, environment, dry_run, republish)
       @stats = stats
