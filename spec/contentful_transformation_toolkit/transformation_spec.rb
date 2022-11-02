@@ -24,13 +24,11 @@ RSpec.describe ContentfulTransformationToolkit::Transformation do
   end
 
   describe '#run' do
+    let(:test_each_block) { Proc.new {} }
     let(:simple) do
+      outer = self
       Class.new(ContentfulTransformationToolkit::Transformation) do
-        source_content_model 'page'
-
-        def each(page)
-
-        end
+        each_entry_of_type('page', &outer.test_each_block)
       end
     end
 
@@ -41,9 +39,9 @@ RSpec.describe ContentfulTransformationToolkit::Transformation do
     end
 
     it 'calls #each with each entry in source content model' do
-      expect(subject).to receive(:each).with(records[0]).once
-      expect(subject).to receive(:each).with(records[1]).once
-      expect(subject).to receive(:each).with(records[2]).once
+      expect(subject).to receive(:instance_exec).with(records[0], anything, &test_each_block).once
+      expect(subject).to receive(:instance_exec).with(records[1], anything, &test_each_block).once
+      expect(subject).to receive(:instance_exec).with(records[2], anything, &test_each_block).once
       subject.run
     end
 
@@ -65,36 +63,10 @@ RSpec.describe ContentfulTransformationToolkit::Transformation do
       end
 
       it 'calls #each with each entry in source content model' do
-        expect(subject).to receive(:each).with(records[0]).once
-        expect(subject).to receive(:each).with(records[1]).once
-        expect(subject).to receive(:each).with(records[2]).once
+        expect(subject).to receive(:instance_exec).with(records[0], anything, &test_each_block).once
+        expect(subject).to receive(:instance_exec).with(records[1], anything, &test_each_block).once
+        expect(subject).to receive(:instance_exec).with(records[2], anything, &test_each_block).once
         subject.run
-      end
-    end
-
-    context 'when an error or warning is called within the each method' do
-      let(:records) do
-        [
-          double(Contentful::Management::Entry, id: 'record-id'),
-        ]
-      end
-
-      let(:simple) do
-        Class.new(ContentfulTransformationToolkit::Transformation) do
-          source_content_model 'page'
-
-          def each(page)
-            error("oh dear")
-            warning("hmm")
-            info('ok')
-          end
-        end
-      end
-
-      it 'outputs the current record with the message' do
-        expect{ subject.run }.to output(/Error: \[record-id\] oh dear/).to_stdout
-        expect{ subject.run }.to output(/Warning: \[record-id\] hmm/).to_stdout
-        expect{ subject.run }.to output(/Info: \[record-id\] ok/).to_stdout
       end
     end
   end

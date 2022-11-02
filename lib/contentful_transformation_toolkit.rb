@@ -7,9 +7,12 @@ require 'ruby-progressbar'
 require 'contentful/management'
 require 'active_support/core_ext/class/attribute'
 require 'active_support/core_ext/object/deep_dup'
+require 'active_support/core_ext/module/delegation'
 
 require_relative "contentful_transformation_toolkit/version"
 require_relative "contentful_transformation_toolkit/rich_text"
+require_relative "contentful_transformation_toolkit/stats"
+require_relative "contentful_transformation_toolkit/contentful_updater"
 require_relative "contentful_transformation_toolkit/transformation"
 
 module ContentfulTransformationToolkit
