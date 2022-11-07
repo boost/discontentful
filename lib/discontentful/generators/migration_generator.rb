@@ -2,7 +2,7 @@ module Discontentful
   module Generators
     class MigrationGenerator < ::Rails::Generators::Base
       argument :name
-      source_root File.expand_path('templates', __dir__)
+      source_root File.expand_path(__dir__, 'templates')
 
       desc "This generator creates a folder at contentful_migrations/discontentful/ to keep migration files"
       def add_migration
