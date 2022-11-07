@@ -1,0 +1,7 @@
+module DiscontentfulMigrations
+  class <%= name.classify %> < Discontentful::Transformation
+    each_entry_of_type 'YOUR CONTENT MODEL ID' do |model, contentful|
+      # do something
+    end
+  end
+end

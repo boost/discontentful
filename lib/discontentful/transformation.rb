@@ -16,7 +16,8 @@ module Discontentful
       @republish = republish
 
       @stats = Stats.new
-      @updater = ContentfulUpdater.new(@stats, @environment, @dry_run, @republish)
+      @tag_name = self.class.name.demodulize.downcase.underscore
+      @updater = ContentfulUpdater.new(@stats, @environment, tag_name: @tag_name, dry_run: @dry_run, republish: @republish)
     end
 
     delegate :info, :warning, :error, :log, to: :@stats
