@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 namespace :discontentful do
+
+  desc 'Run a discontentful migration found in contentful_migrations/discontentful'
   task :migrate, [:migration_name] do |_task, args|
     require 'highline'
 
