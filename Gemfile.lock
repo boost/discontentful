@@ -5,6 +5,7 @@ PATH
       activesupport
       contentful-management (>= 3.6.0)
       diffy
+      highline
       rainbow
       ruby-progressbar
 

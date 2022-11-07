@@ -2,6 +2,8 @@
 
 namespace :discontentful do
   task :migrate, [:migration_name] do |_task, args|
+    require 'highline'
+
     unless File.exist? 'contentful_migrations/discontentful'
       abort("Expected contentful_migrations/discontentful/ folder for migrations")
     end
