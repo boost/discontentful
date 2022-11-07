@@ -1,7 +1,7 @@
 module Discontentful
   class Railtie < Rails::Railtie
     rake_tasks do
-      load "discontentful/tasks/discontentful.tasks"
+      load "discontentful/tasks/discontentful.rake"
     end
 
     generators do
