@@ -26,9 +26,9 @@ namespace :discontentful do
     mode = cli.choose('Apply changes', 'Dry run')
     dry_run = mode != 'Apply changes'
 
-    republish = cli.agree(Rainbow("Republish published entries? (y/n)").yellow) { |e| e.default = true } unless @dry_run
+    republish = cli.agree(Rainbow("Republish published entries? (y/n)").yellow) { |e| e.default = true } unless dry_run
 
-    unless @dry_run
+    unless dry_run
       abort unless cli.agree(Rainbow("You are about to make updates to contentful data! #{Rainbow("Proceed? (y/n)").yellow}").red)
     end
 
