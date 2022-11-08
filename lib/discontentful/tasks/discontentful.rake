@@ -32,6 +32,6 @@ namespace :discontentful do
       abort unless cli.agree(Rainbow("You are about to make updates to contentful data! #{Rainbow("Proceed? (y/n)").yellow}").red)
     end
 
-    class_name.new(environment, dry_run: dry_run, republish: republish)
+    class_name.new(environment, dry_run: dry_run, republish: republish).run
   end
 end
