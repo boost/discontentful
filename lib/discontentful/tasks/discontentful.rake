@@ -11,7 +11,7 @@ namespace :discontentful do
     end
 
     file_name = args[:migration_name].underscore
-    require_relative "contentful_migrations/discontentful/#{file_name}"
+    require Rails.root.join("contentful_migrations/discontentful/#{file_name}")
 
     class_name = begin
       DiscontentfulMigrations.const_get(args[:migration_name].classify)
