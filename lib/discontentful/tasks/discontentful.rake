@@ -10,11 +10,11 @@ namespace :discontentful do
       abort("Expected contentful_migrations/discontentful/ folder for migrations")
     end
 
-    file_name = args[:name].underscore
+    file_name = args[:migration_name].underscore
     require "contentful_migrations/discontentful/#{file_name}"
 
     class_name = begin
-      DiscontentfulMigrations.const_get(args[:name].classify)
+      DiscontentfulMigrations.const_get(args[:migration_name].classify)
     rescue NameError
       abort("Expected contentful_migrations/discontentful/#{file_name}.rb to define DiscontentfulMigrations::#{args[:name].classify}")
     end
