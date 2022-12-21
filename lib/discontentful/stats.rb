@@ -36,6 +36,11 @@ module Discontentful
       @stats['Updated records'] += 1
     end
 
+    def create_record
+      @stats['Created records'] ||= 0
+      @stats['Created records'] += 1
+    end
+
     def publish_record
       @stats['Published records'] ||= 0
       @stats['Published records'] += 1

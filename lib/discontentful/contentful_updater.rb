@@ -27,6 +27,22 @@ module Discontentful
       end
     end
 
+    def create_entry(content_type, **fields)
+      @stats.log Rainbow("Creates new #{content_type.id}").cyan
+      fields.each do |field, value|
+        @stats.log Rainbow("#{field_name}:").cyan
+        @stats.log Rainbox(value).green
+      end
+
+      @stats.create_record
+
+      return if @dry_run
+
+      entry = content_type.entries.create(**fields)
+      add_tag(entry, @tag_name)
+      @stats.info "Created #{entry.id}"
+    end
+
     def find_assets(**fields)
       @environment.assets.all(**fields.transform_keys {|k| "fields.#{k}"})
     end
@@ -51,7 +67,6 @@ module Discontentful
       updated = entry.updated?
 
       yield
-
       return unless @republish && entry.published? && !updated
 
       add_tag(entry, "#{@tag_name}_repub")
