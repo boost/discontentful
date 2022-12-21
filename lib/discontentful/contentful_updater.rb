@@ -32,7 +32,7 @@ module Discontentful
 
       @stats.log Rainbow("Creates new #{type.id}").cyan
       fields.each do |field, value|
-        @stats.log Rainbow("#{field_name}:").cyan
+        @stats.log Rainbow("#{field}:").cyan
         @stats.log Rainbox(value).green
       end
 
