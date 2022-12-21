@@ -28,6 +28,8 @@ module Discontentful
     end
 
     def create_entry(content_type, **fields)
+      type = @environment.content_types.find(content_type)
+
       @stats.log Rainbow("Creates new #{content_type.id}").cyan
       fields.each do |field, value|
         @stats.log Rainbow("#{field_name}:").cyan
@@ -38,7 +40,7 @@ module Discontentful
 
       return if @dry_run
 
-      entry = content_type.entries.create(**fields)
+      entry = type.entries.create(**fields)
       add_tag(entry, @tag_name)
       @stats.info "Created #{entry.id}"
     end
