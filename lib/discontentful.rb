@@ -52,7 +52,7 @@ module Discontentful
     puts Rainbow("Using environment #{environment.id}").green
 
     client = Contentful::Management::Client.new(
-      token, dynamic_entries: { space.id => environment.id }
+      token, dynamic_entries: { space.id => environment.id }, default_locale: 'en-NZ'
     )
     environment = client.environments(space.id).find(environment.id)
 

@@ -27,7 +27,7 @@ module Discontentful
       end
     end
 
-    def create_entry(content_type, **fields)
+    def create_entry(content_type, locale, **fields)
       type = @environment.content_types.find(content_type)
 
       @stats.log Rainbow("Creates new #{type.id}").cyan
@@ -40,9 +40,16 @@ module Discontentful
 
       return if @dry_run
 
-      entry = type.entries.create(**fields)
+      entry = type.entries.new
+      entry.locale = locale
+      fields.each do |field_name, value|
+        entry.public_send("#{field_name}=", value)
+      end
+      entry.save
       add_tag(entry, @tag_name)
       @stats.info "Created #{entry.id}"
+
+      entry
     end
 
     def find_assets(**fields)
