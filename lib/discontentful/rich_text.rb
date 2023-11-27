@@ -28,17 +28,19 @@ module Discontentful
     def map_nodes(&block)
       return if @rich_text.nil?
 
-      map_node(@rich_text, &block)
+      map_node(@rich_text, &block).first
     end
 
     def map_node(node, &block)
-      new_node = yield node
-      return if new_node.nil?
+      new_nodes = yield node
+      return if new_nodes.nil?
 
-      new_content = map_content(new_node, &block)
-      new_node["content"] = new_content unless new_content.nil?
+      Array.wrap(new_nodes).map do |new_node|
+        new_content = map_content(new_node, &block)
+        new_node["content"] = new_content unless new_content.nil?
 
-      new_node
+        new_node
+      end
     end
 
     def map_content(node, &block)
@@ -46,7 +48,7 @@ module Discontentful
 
       node["content"].map do |content_node|
         map_node(content_node, &block)
-      end.compact
+      end.flatten.compact
     end
   end
 end

@@ -22,7 +22,8 @@ module Discontentful
 
       republish(entry) do
         add_tag(entry, @tag_name)
-        entry.update(**changed_fields)
+        camel_names = changed_fields.transform_keys { |k| k.to_s.camelize(:lower) }
+        entry.update(**camel_names)
         @stats.info "Updated #{entry.id}"
       end
     end
