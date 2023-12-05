@@ -105,7 +105,7 @@ module Discontentful
 
     def diff(*vals)
       vals_as_string = vals.map do |val|
-        if val.is_a? Hash
+        if val.is_a?(Hash)
           val.to_yaml
         else
           val.to_s
